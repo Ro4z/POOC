@@ -16,6 +16,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def click_method(self):
         QtWidgets.QMessageBox.about(self, "Title", "Content")
 
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
 
