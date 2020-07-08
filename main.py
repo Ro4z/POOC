@@ -2,6 +2,8 @@ import sys
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 from video_module import ShowVideo, ImageViewer
+
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, layout_widget):
         QtWidgets.QMainWindow.__init__(self)
