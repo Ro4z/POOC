@@ -37,7 +37,7 @@ if __name__ == '__main__':
     vid.VideoSignal2.connect(image_viewer2.set_image)
 
     push_button1 = QtWidgets.QPushButton('Start')
-    push_button2 = QtWidgets.QPushButton('Exit')
+    push_button2 = QtWidgets.QPushButton('Quit')
     push_button1.clicked.connect(vid.start_video)
     push_button2.clicked.connect(vid.exit)
 
