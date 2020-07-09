@@ -105,3 +105,4 @@ class ShowVideo(QtCore.QObject):
 
     def exit(self):
         self.run_video = False
+        QtCore.QCoreApplication.instance().quit()

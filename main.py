@@ -8,10 +8,10 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, layout_widget):
         QtWidgets.QMainWindow.__init__(self)
         self.setCentralWidget(layout_widget)
-        button1 = QtWidgets.QPushButton('Show messagebox', self)
-        button1.clicked.connect(self.click_method)
-        button1.resize(200,64)
-        button1.move(50,50)
+        # button1 = QtWidgets.QPushButton('Show messagebox', self)
+        # button1.clicked.connect(self.click_method)
+        # button1.resize(200,64)
+        # button1.move(50,50)
 
     def click_method(self):
         QtWidgets.QMessageBox.about(self, "Title", "Content")
@@ -37,9 +37,8 @@ if __name__ == '__main__':
     vid.VideoSignal2.connect(image_viewer2.set_image)
 
     push_button1 = QtWidgets.QPushButton('Start')
-    push_button2 = QtWidgets.QPushButton('Exit')
+    push_button2 = QtWidgets.QPushButton('Quit')
     push_button1.clicked.connect(vid.start_video)
-
     push_button2.clicked.connect(vid.exit)
 
     vertical_layout = QtWidgets.QVBoxLayout()
