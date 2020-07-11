@@ -24,11 +24,6 @@ if __name__ == '__main__':
     thread.start()
     vid = ShowVideo()
     vid.moveToThread(thread)
-    #
-    # thread2 = QtCore.QThread()
-    # thread2.start()
-    # keyDetector = KeyDetector()
-    # keyDetector.moveToThread(thread)
 
     image_viewer1 = ImageViewer()
     image_viewer2 = ImageViewer()
