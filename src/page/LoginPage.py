@@ -1,6 +1,7 @@
-import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QWidget
+from setting import WIDTH, HEIGHT
+
 
 class LoginPage(QWidget):
     switch_window_to_main = QtCore.pyqtSignal()
@@ -8,7 +9,7 @@ class LoginPage(QWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.setWindowTitle("Login Page")
-        self.resize(600,480)
+        self.resize(WIDTH, HEIGHT)
         layout = QtWidgets.QGridLayout()
 
         self.login_button = QtWidgets.QPushButton("Login")

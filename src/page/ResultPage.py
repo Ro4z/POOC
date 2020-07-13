@@ -1,6 +1,6 @@
-import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QWidget
+from setting import WIDTH, HEIGHT
 
 
 class ResultPage(QWidget):
@@ -9,7 +9,7 @@ class ResultPage(QWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.setWindowTitle("Result Page")
-        self.resize(600,480)
+        self.resize(WIDTH, HEIGHT)
         layout = QtWidgets.QGridLayout()
 
         self.start_button = QtWidgets.QPushButton("GO MAIN PAGE")
