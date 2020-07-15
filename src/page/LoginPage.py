@@ -1,4 +1,4 @@
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
 
@@ -6,18 +6,82 @@ from setting import WIDTH, HEIGHT
 class LoginPage(QWidget):
     switch_window_to_main = QtCore.pyqtSignal()
 
-    def __init__(self):
-        QWidget.__init__(self)
-        self.setWindowTitle("Login Page")
+    def setupUi(self, LoginForm):
         self.resize(WIDTH, HEIGHT)
-        layout = QtWidgets.QGridLayout()
+        self.back_1 = QtWidgets.QLabel(LoginForm)
+        self.back_1.setGeometry(QtCore.QRect(0, 0, 300, 600))
+        self.back_1.setStyleSheet("background-color:rgb(255, 255, 255);")
 
-        self.login_button = QtWidgets.QPushButton("Login")
-        self.login_button.clicked.connect(self.swtich_login_page)
+        self.back_2 = QtWidgets.QLabel(LoginForm)
+        self.back_2.setGeometry(QtCore.QRect(299, 0, 501, 600))
+        self.back_2.setToolTip("")
+        #self.back_2.setText("")
+        self.back_2.setPixmap(QtGui.QPixmap("backImage.jpg"))
+        #self.back_2.setScaledContents(True)
 
-        layout.addWidget(self.login_button)
+        self.loginBtn = QtWidgets.QPushButton(LoginForm)
+        self.loginBtn.setGeometry(QtCore.QRect(45, 410, 210, 40))
+        self.loginBtn.setStyleSheet("background-color : rgb(0, 123, 255);\n"
+"border-style:outset;\n"
+"border-radius: 10px;\n"
+"color: rgb(255, 255, 255);\n"
+"font: bold 10pt \"Hancom Gothic\";\n"
+"\n")
+        self.loginBtn.clicked.connect(self.swtich_login_page)
 
-        self.setLayout(layout)
+        self.ID = QtWidgets.QLineEdit(LoginForm)
+        self.ID.setGeometry(QtCore.QRect(45, 270, 210, 40))
+        self.ID.setStyleSheet("border-color:rgb(0, 183, 206);\n")
+
+        self.PWD = QtWidgets.QLineEdit(LoginForm)
+        self.PWD.setGeometry(QtCore.QRect(45, 340, 210, 40))
+
+        self.label_3 = QtWidgets.QLabel(LoginForm)
+        self.label_3.setGeometry(QtCore.QRect(25, 40, 250, 220))
+        #self.label_3.setText("")
+        self.label_3.setPixmap(QtGui.QPixmap("logo.png"))
+        self.label_3.setScaledContents(True)
+
+
+        self.stId = QtWidgets.QLabel(LoginForm)
+        self.stId.setGeometry(QtCore.QRect(50, 250, 64, 21))
+        self.stId.setStyleSheet("font: bold 8pt \"Hancom Gothic\";")
+
+
+        self.stPwd = QtWidgets.QLabel(LoginForm)
+        self.stPwd.setGeometry(QtCore.QRect(50, 320, 64, 21))
+        self.stPwd.setStyleSheet("font: bold 8pt \"Hancom Gothic\";")
+
+
+        self.back_1.raise_()
+        self.PWD.raise_()
+        self.loginBtn.raise_()
+        self.back_2.raise_()
+        self.ID.raise_()
+        self.label_3.raise_()
+        self.stId.raise_()
+        self.stPwd.raise_()
+
+        self.retranslateUi(LoginForm)
+        QtCore.QMetaObject.connectSlotsByName(LoginForm)
+
+    def retranslateUi(self, LoginForm):
+        _translate = QtCore.QCoreApplication.translate
+        LoginForm.setWindowTitle(_translate("LoginForm", "Login"))
+        self.loginBtn.setText(_translate("LoginForm", "Login"))
+        self.stId.setText(_translate("LoginForm", "학번"))
+        self.stPwd.setText(_translate("LoginForm", "비밀번호"))
 
     def swtich_login_page(self):
         self.switch_window_to_main.emit()
+
+"""
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    LoginForm = QtWidgets.QWidget()
+    ui = Ui_LoginForm()
+    ui.setupUi(LoginForm)
+    LoginForm.show()
+    sys.exit(app.exec_())
+"""
