@@ -37,7 +37,7 @@ class LoginPage(QWidget):
 
         self.label_3 = QtWidgets.QLabel(LoginForm)
         self.label_3.setGeometry(QtCore.QRect(25, 40, 250, 220))
-        #self.label_3.setText("")
+
         self.label_3.setPixmap(QtGui.QPixmap("Img/logo.png"))
         self.label_3.setScaledContents(True)
 
@@ -57,7 +57,8 @@ class LoginPage(QWidget):
         self.loginBtn.raise_()
         self.back_2.raise_()
         self.ID.raise_()
-        self.label_3.raise_()
+        #self.label_3.raise_()
+        self.label_3.show()
         self.stId.raise_()
         self.stPwd.raise_()
 

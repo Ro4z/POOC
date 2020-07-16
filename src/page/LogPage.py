@@ -1,6 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
+from datetime import datetime
+
+list=[]
+
+date = datetime.now().strftime("%Y-%m-%d(%H:%M:%S)")
+alertMsg = "out of visual range"
+list.append([date,alertMsg])
+list.append([date,alertMsg])
 
 class LogPage(QWidget):
     switch_window = QtCore.pyqtSignal()
@@ -16,7 +24,8 @@ class LogPage(QWidget):
 
         self.logList = QtWidgets.QTextBrowser(LogForm)
         self.logList.setGeometry(QtCore.QRect(300, 0, 500, 600))
-        self.logList.setStyleSheet("border:0;")
+        self.logList.setStyleSheet("border:0; font: 12pt \"Hancom Gothic\";")
+        self.logList.setText("\n\n")
 
         self.backArrow = QtWidgets.QPushButton(LogForm)
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
@@ -32,6 +41,8 @@ class LogPage(QWidget):
 "color:rgb(255, 255, 255);\n"
 "font: bold 12pt \"Hancom Gothic\";\n"
 "")
+
+        self.class_1.clicked.connect(self.set_log_text)
 
         self.class_2 = QtWidgets.QPushButton(LogForm)
         self.class_2.setGeometry(QtCore.QRect(30, 160, 251, 71))
@@ -114,13 +125,7 @@ class LogPage(QWidget):
     def swtich_login_page(self):
         self.switch_window_to_main.emit()
 
-"""
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    LogForm = QtWidgets.QWidget()
-    ui = Ui_LogForm()
-    ui.setupUi(LogForm)
-    LogForm.show()
-    sys.exit(app.exec_())
-"""
+
+    def set_log_text(self):
+        for i in range(0,len(list)):
+            self.logList.append("  "+list[i][0] + "    "+list[i][1]+"\n")
