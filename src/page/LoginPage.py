@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
+from PyQt5.QtGui import QIcon, QPixmap
 
 
 class LoginPage(QWidget):
@@ -15,7 +16,7 @@ class LoginPage(QWidget):
         self.back_2 = QtWidgets.QLabel(LoginForm)
         self.back_2.setGeometry(QtCore.QRect(299, 0, 501, 600))
         self.back_2.setToolTip("")
-        self.back_2.setPixmap(QtGui.QPixmap("Img/login.jpg"))
+        self.back_2.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/login.png"))
         self.back_2.setScaledContents(True)
 
         self.loginBtn = QtWidgets.QPushButton(LoginForm)
@@ -39,7 +40,7 @@ class LoginPage(QWidget):
         self.label_3 = QtWidgets.QLabel(LoginForm)
         self.label_3.setGeometry(QtCore.QRect(25, 40, 250, 220))
 
-        self.label_3.setPixmap(QtGui.QPixmap("Img/logo.png"))
+        self.label_3.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/logo.png"))
         self.label_3.setScaledContents(True)
 
 
@@ -58,7 +59,7 @@ class LoginPage(QWidget):
         self.loginBtn.raise_()
         self.back_2.raise_()
         self.ID.raise_()
-        #self.label_3.raise_()
+        self.label_3.raise_()
         self.label_3.show()
         self.stId.raise_()
         self.stPwd.raise_()

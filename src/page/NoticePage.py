@@ -10,7 +10,7 @@ class NoticePage(QWidget):
 
         self.back = QtWidgets.QLabel(NoticeForm)
         self.back.setGeometry(QtCore.QRect(0, 0, 800, 600))
-        self.back.setPixmap(QtGui.QPixmap("그림2.jpg"))
+        self.back.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/preview.png"))
         self.back.setScaledContents(True)
 
         self.innerSQ = QtWidgets.QLabel(NoticeForm)
@@ -46,8 +46,13 @@ class NoticePage(QWidget):
         self.startBtn.raise_()
         self.text.raise_()
 
+
+
         self.retranslateUi(NoticeForm)
         QtCore.QMetaObject.connectSlotsByName(NoticeForm)
+
+
+
 
     def retranslateUi(self, NoticeForm):
         _translate = QtCore.QCoreApplication.translate
@@ -64,4 +69,3 @@ class NoticePage(QWidget):
 
     def switch_exam_page(self):
         self.switch_window_to_exam.emit()
-

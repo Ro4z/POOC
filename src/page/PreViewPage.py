@@ -9,8 +9,12 @@ class PreViewPage(QWidget):
     def setupUi(self, PreviewForm):
         self.resize(WIDTH, HEIGHT)
 
+        self.webcam = QtWidgets.QLabel(PreviewForm)
+        self.webcam.setGeometry(QtCore.QRect(225, 120, 350, 221))
+        self.webcam.setStyleSheet("background-color:rgb(255, 255, 127)")
+
         self.startBtn = QtWidgets.QPushButton(PreviewForm)
-        self.startBtn.setGeometry(QtCore.QRect(325, 340, 150, 41))
+        self.startBtn.setGeometry(QtCore.QRect(325, 490, 150, 41))
         self.startBtn.setStyleSheet("background-color : rgb(0, 123, 255);\n"
 "border-style:outset;\n"
 "border-radius: 10px;\n"
@@ -23,23 +27,26 @@ class PreViewPage(QWidget):
 
         self.back = QtWidgets.QLabel(PreviewForm)
         self.back.setGeometry(QtCore.QRect(0, 0, 800, 600))
-        self.back.setPixmap(QtGui.QPixmap("그림2.jpg"))
+        self.back.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/preview.png"))
         self.back.setScaledContents(True)
 
         self.text = QtWidgets.QTextBrowser(PreviewForm)
-        self.text.setGeometry(QtCore.QRect(180, 240, 440, 160))
+        self.text.setGeometry(QtCore.QRect(180, 390, 440, 160))
         self.text.setStyleSheet("background-color:rgb(255, 255, 255);\n"
 "border : 0;\n"
 "border-radius:10px;")
 
         self.backArrow = QtWidgets.QPushButton(PreviewForm)
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
+        self.backArrow.setStyleSheet("background-color:rgb(255, 255, 255);")
+        self.backArrow.setIcon(QtGui.QIcon("/Users/ewqaz/Desktop/UI/back.png"))
         self.backArrow.clicked.connect(self.swtich_login_page)
 
         self.back.raise_()
         self.text.raise_()
         self.startBtn.raise_()
         self.backArrow.raise_()
+        self.webcam.raise_()
 
         self.retranslateUi(PreviewForm)
         QtCore.QMetaObject.connectSlotsByName(PreviewForm)

@@ -10,7 +10,7 @@ class ResultPage(QWidget):
 
         self.back_2 = QtWidgets.QLabel(ResultForm)
         self.back_2.setGeometry(QtCore.QRect(0, 0, 800, 600))
-        self.back_2.setPixmap(QtGui.QPixmap("그림2.jpg"))
+        self.back_2.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/preview.png"))
         self.back_2.setScaledContents(True)
 
         self.text = QtWidgets.QTextBrowser(ResultForm)

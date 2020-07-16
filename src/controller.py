@@ -6,7 +6,7 @@ from src.page.NoticePage import NoticePage
 from src.page.ExamPage import ExamPage
 from src.page.ResultPage import ResultPage
 from PyQt5 import QtWidgets
-
+import playsound
 
 class Controller:
     def __init__(self):
@@ -59,8 +59,12 @@ class Controller:
     def show_notice_page(self):
         self.PreviewForm.close()
         self.notice_page.setupUi(self.NoticeForm)
+        self.notice_page.switch_window_to_exam.connect(self.alert_message)
         self.notice_page.switch_window_to_exam.connect(self.show_exam_page)
         self.NoticeForm.show()
+
+    def alert_message(self):
+        playsound.playsound("notice.mp3", True)
 
     def show_exam_page(self):
         self.NoticeForm.close()

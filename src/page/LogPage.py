@@ -29,6 +29,7 @@ class LogPage(QWidget):
 
         self.backArrow = QtWidgets.QPushButton(LogForm)
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
+        self.backArrow.setIcon(QtGui.QIcon("/Users/ewqaz/Desktop/UI/back.png"))
         self.backArrow.clicked.connect(self.swtich_login_page)
 
         self.class_1 = QtWidgets.QPushButton(LogForm)

@@ -22,7 +22,7 @@ class MainPage(QWidget):
         self.stImg = QtWidgets.QLabel(MainForm)
         self.stImg.setGeometry(QtCore.QRect(40, 120, 220, 190))
         self.stImg.setStyleSheet("border-radius : 30%;")
-        self.stImg.setPixmap(QtGui.QPixmap("student.jpg"))
+        self.stImg.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/student.png"))
         self.stImg.setScaledContents(True)
 
 
