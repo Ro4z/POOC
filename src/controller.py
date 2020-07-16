@@ -23,6 +23,7 @@ class Controller:
         self.LogForm = QtWidgets.QWidget()
         self.PreviewForm = QtWidgets.QWidget()
         self.NoticeForm = QtWidgets.QWidget()
+        self.ExamForm = QtWidgets.QWidget()
         self.ResultForm = QtWidgets.QWidget()
 
 
@@ -68,11 +69,12 @@ class Controller:
 
     def show_exam_page(self):
         self.NoticeForm.close()
+        self.exam_page.setupUi(self.ExamForm)
         self.exam_page.switch_window_to_result.connect(self.show_result_page)
-        self.exam_page.show()
+        self.ExamForm.show()
 
     def show_result_page(self):
-        self.exam_page.close()
+        self.ExamForm.close()
         self.result_page.setupUi(self.ResultForm)
         self.result_page.switch_window_to_main.connect(self.show_main_page)
         self.ResultForm.show()
