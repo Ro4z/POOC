@@ -33,6 +33,7 @@ class LoginPage(QWidget):
         self.ID.setStyleSheet("border-color:rgb(0, 183, 206);\n")
 
         self.PWD = QtWidgets.QLineEdit(LoginForm)
+        self.PWD.setEchoMode(QtWidgets.QLineEdit.Password)
         self.PWD.setGeometry(QtCore.QRect(45, 340, 210, 40))
 
         self.label_3 = QtWidgets.QLabel(LoginForm)
