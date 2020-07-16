@@ -7,4 +7,3 @@ if __name__ == '__main__':
     controller = Controller()
     controller.show_login_page()
     sys.exit(app.exec_())
-

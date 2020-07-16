@@ -2,7 +2,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
 
-
 class NoticePage(QWidget):
     switch_window_to_exam = QtCore.pyqtSignal()
 
@@ -52,7 +51,7 @@ class NoticePage(QWidget):
 
     def retranslateUi(self, NoticeForm):
         _translate = QtCore.QCoreApplication.translate
-        NoticeForm.setWindowTitle(_translate("NoticeForm", "Form"))
+        NoticeForm.setWindowTitle(_translate("NoticeForm", "Notice Page"))
         self.startBtn.setWhatsThis(_translate("NoticeForm", "\n"
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

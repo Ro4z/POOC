@@ -9,7 +9,7 @@ class ResultPage(QWidget):
         self.resize(WIDTH, HEIGHT)
 
         self.back_2 = QtWidgets.QLabel(ResultForm)
-        self.back_2.setGeometry(QtCore.QRect(-70, 0, 871, 600))
+        self.back_2.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.back_2.setPixmap(QtGui.QPixmap("그림2.jpg"))
         self.back_2.setScaledContents(True)
 
@@ -36,7 +36,7 @@ class ResultPage(QWidget):
 
     def retranslateUi(self, ResultForm):
         _translate = QtCore.QCoreApplication.translate
-        ResultForm.setWindowTitle(_translate("ResultForm", "Form"))
+        ResultForm.setWindowTitle(_translate("ResultForm", "Result Page"))
         self.text.setHtml(_translate("ResultForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

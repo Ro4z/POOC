@@ -4,6 +4,7 @@ from setting import WIDTH, HEIGHT
 
 class LogPage(QWidget):
     switch_window = QtCore.pyqtSignal()
+    switch_window_to_main = QtCore.pyqtSignal()
 
     def setupUi(self, LogForm):
         self.resize(WIDTH, HEIGHT)
@@ -19,7 +20,7 @@ class LogPage(QWidget):
 
         self.backArrow = QtWidgets.QPushButton(LogForm)
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
-        #self.backArrow.setText("")
+        self.backArrow.clicked.connect(self.swtich_login_page)
 
         self.class_1 = QtWidgets.QPushButton(LogForm)
         self.class_1.setGeometry(QtCore.QRect(30, 60, 251, 71))
@@ -103,12 +104,15 @@ class LogPage(QWidget):
 
     def retranslateUi(self, LogForm):
         _translate = QtCore.QCoreApplication.translate
-        LogForm.setWindowTitle(_translate("LogForm", "Log"))
+        LogForm.setWindowTitle(_translate("LogForm", "Log Page"))
         self.class_1.setText(_translate("LogForm", "  자바 기반 응용 프로그래밍"))
         self.class_2.setText(_translate("LogForm", "인터넷 프로그래밍"))
         self.class_3.setText(_translate("LogForm", "초급 스페인어"))
         self.class_4.setText(_translate("LogForm", "어셈블리어"))
         self.class_5.setText(_translate("LogForm", "댄스스포츠"))
+
+    def swtich_login_page(self):
+        self.switch_window_to_main.emit()
 
 """
 if __name__ == "__main__":

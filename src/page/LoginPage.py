@@ -15,9 +15,8 @@ class LoginPage(QWidget):
         self.back_2 = QtWidgets.QLabel(LoginForm)
         self.back_2.setGeometry(QtCore.QRect(299, 0, 501, 600))
         self.back_2.setToolTip("")
-        #self.back_2.setText("")
-        self.back_2.setPixmap(QtGui.QPixmap("backImage.jpg"))
-        #self.back_2.setScaledContents(True)
+        self.back_2.setPixmap(QtGui.QPixmap("Img/login.jpg"))
+        self.back_2.setScaledContents(True)
 
         self.loginBtn = QtWidgets.QPushButton(LoginForm)
         self.loginBtn.setGeometry(QtCore.QRect(45, 410, 210, 40))
@@ -39,7 +38,7 @@ class LoginPage(QWidget):
         self.label_3 = QtWidgets.QLabel(LoginForm)
         self.label_3.setGeometry(QtCore.QRect(25, 40, 250, 220))
         #self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap("logo.png"))
+        self.label_3.setPixmap(QtGui.QPixmap("Img/logo.png"))
         self.label_3.setScaledContents(True)
 
 
@@ -67,21 +66,10 @@ class LoginPage(QWidget):
 
     def retranslateUi(self, LoginForm):
         _translate = QtCore.QCoreApplication.translate
-        LoginForm.setWindowTitle(_translate("LoginForm", "Login"))
+        LoginForm.setWindowTitle(_translate("LoginForm", "Login Page"))
         self.loginBtn.setText(_translate("LoginForm", "Login"))
         self.stId.setText(_translate("LoginForm", "학번"))
         self.stPwd.setText(_translate("LoginForm", "비밀번호"))
 
     def swtich_login_page(self):
         self.switch_window_to_main.emit()
-
-"""
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    LoginForm = QtWidgets.QWidget()
-    ui = Ui_LoginForm()
-    ui.setupUi(LoginForm)
-    LoginForm.show()
-    sys.exit(app.exec_())
-"""

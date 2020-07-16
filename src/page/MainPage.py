@@ -5,6 +5,7 @@ from setting import WIDTH, HEIGHT
 class MainPage(QWidget):
     switch_window_to_log = QtCore.pyqtSignal()
     switch_window_to_preview = QtCore.pyqtSignal()
+    switch_window_to_login = QtCore.pyqtSignal()
 
     def setupUi(self, MainForm):
         self.resize(WIDTH, HEIGHT)
@@ -52,6 +53,18 @@ class MainPage(QWidget):
 "\n"
 "")
         self.showLog.clicked.connect(self.switch_log_page)
+
+        self.logoutBtn = QtWidgets.QPushButton(MainForm)
+        self.logoutBtn.setGeometry(QtCore.QRect(85, 430, 130, 30))
+        self.logoutBtn.setStyleSheet("background-color : rgb(0, 123, 255);\n"
+                                     "border-style:outset;\n"
+                                     "border-radius: 10px;\n"
+                                     "color: rgb(255, 255, 255);\n"
+                                     "font: bold 10pt \"Hancom Gothic\";\n"
+                                     "\n"
+                                     "\n"
+                                     "")
+        self.logoutBtn.clicked.connect(self.switch_login_page)
 
 
         self.class_1 = QtWidgets.QPushButton(MainForm)
@@ -139,6 +152,7 @@ class MainPage(QWidget):
         self.stNum.raise_()
         self.stName.raise_()
         self.showLog.raise_()
+        self.logoutBtn.raise_()
         self.class_1.raise_()
         self.label.raise_()
         self.class_2.raise_()
@@ -155,7 +169,7 @@ class MainPage(QWidget):
 
     def retranslateUi(self, MainForm):
         _translate = QtCore.QCoreApplication.translate
-        MainForm.setWindowTitle(_translate("MainForm", "Main"))
+        MainForm.setWindowTitle(_translate("MainForm", "Main Page"))
         self.stName.setHtml(_translate("MainForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -173,6 +187,13 @@ class MainPage(QWidget):
 "</style></head><body style=\" font-family:\'HY견고딕\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1 2 1 9 1 2 3 4</p></body></html>"))
         self.showLog.setText(_translate("MainForm", "알림내역 보기"))
+        self.logoutBtn.setWhatsThis(_translate("MainForm", "\n"
+                                                           "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                                                           "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                                           "p, li { white-space: pre-wrap; }\n"
+                                                           "</style></head><body style=\" font-family:\'HY견고딕\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+                                                           "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1 2 1 9 1 2 3 4</p></body></html>"))
+        self.logoutBtn.setText(_translate("MainForm", "Log out"))
         self.class_1.setText(_translate("MainForm", "  자바 기반 응용 프로그래밍  |  A.M. 10:00"))
         self.class_2.setText(_translate("MainForm", "  인터넷 프로그래밍  |  P.M. 6:00"))
         self.class_3.setText(_translate("MainForm", "  초급 스페인어  |  A.M. 9:50"))
@@ -184,3 +205,6 @@ class MainPage(QWidget):
 
     def switch_preview_page(self):
         self.switch_window_to_preview.emit()
+
+    def switch_login_page(self):
+        self.switch_window_to_login.emit()

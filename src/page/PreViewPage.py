@@ -4,6 +4,7 @@ from setting import WIDTH, HEIGHT
 
 class PreViewPage(QWidget):
     switch_window_to_notice = QtCore.pyqtSignal()
+    switch_window_to_main = QtCore.pyqtSignal()
 
     def setupUi(self, PreviewForm):
         self.resize(WIDTH, HEIGHT)
@@ -21,7 +22,7 @@ class PreViewPage(QWidget):
         self.startBtn.clicked.connect(self.switch_notice_page)
 
         self.back = QtWidgets.QLabel(PreviewForm)
-        self.back.setGeometry(QtCore.QRect(0, 0, 871, 600))
+        self.back.setGeometry(QtCore.QRect(0, 0, 800, 600))
         self.back.setPixmap(QtGui.QPixmap("그림2.jpg"))
         self.back.setScaledContents(True)
 
@@ -33,7 +34,7 @@ class PreViewPage(QWidget):
 
         self.backArrow = QtWidgets.QPushButton(PreviewForm)
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
-        #self.backArrow.setText("")
+        self.backArrow.clicked.connect(self.swtich_login_page)
 
         self.back.raise_()
         self.text.raise_()
@@ -45,7 +46,7 @@ class PreViewPage(QWidget):
 
     def retranslateUi(self, PreviewForm):
         _translate = QtCore.QCoreApplication.translate
-        PreviewForm.setWindowTitle(_translate("PreviewForm", "Preview"))
+        PreviewForm.setWindowTitle(_translate("PreviewForm", "Preview Page"))
         self.startBtn.setWhatsThis(_translate("PreviewForm", "\n"
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -64,6 +65,9 @@ class PreViewPage(QWidget):
 
     def switch_notice_page(self):
         self.switch_window_to_notice.emit()
+
+    def swtich_login_page(self):
+        self.switch_window_to_main.emit()
 
 """
 if __name__ == "__main__":
