@@ -1,13 +1,44 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PySide2.QtCore import *
+from PySide2.QtGui import *
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtGui import QPixmap
 from setting import CAM_WIDTH, CAM_HEIGHT
+import cv2
+import qimage2ndarray
+from src.module.gaze_detector import GazeDetector
+from src.module.recode_cam import RecodeCam
 
 class ExamPage(QWidget):
     switch_window_to_result = QtCore.pyqtSignal()
 
+    cap = cv2.VideoCapture(0)
+    label = None
+    timer = QTimer()
+    gazeDetector = GazeDetector()
+    recodeCam = RecodeCam()
+
+    def displayFrame(self):
+        ret, frame = self.cap.read()
+        self.recodeCam.recode_cam(frame)
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = qimage2ndarray.array2qimage(frame)
+        self.webcam.setPixmap(QPixmap(image))
+        self.webcam.setScaledContents(True)
+        self.gazeDetector.detect_gaze(frame)
+
+    def start_timer(self):
+        self.timer.timeout.connect(self.displayFrame)
+        self.timer.start(60)
+
+    def stop_timer(self):
+        self.timer.stop()
+
     def setupUi(self, ExamForm):
         self.resize(CAM_WIDTH, CAM_HEIGHT)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 40)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 30)
+
 
         self.endBtn = QtWidgets.QPushButton(ExamForm)
         self.endBtn.setGeometry(QtCore.QRect(270, 250, 121, 41))
