@@ -26,7 +26,6 @@ class Controller:
         self.ExamForm = QtWidgets.QWidget()
         self.ResultForm = QtWidgets.QWidget()
 
-
     def show_login_page(self):
         self.MainForm.close()
         self.login_page.setupUi(self.LoginForm)
@@ -53,14 +52,17 @@ class Controller:
     def show_preview_page(self):
         self.MainForm.close()
         self.preview_page.setupUi(self.PreviewForm)
+        self.preview_page.start_timer()
         self.preview_page.switch_window_to_main.connect(self.show_main_page)
         self.preview_page.switch_window_to_notice.connect(self.show_notice_page)
         self.PreviewForm.show()
 
     def show_notice_page(self):
+        self.preview_page.stop_timer()
         self.PreviewForm.close()
         self.notice_page.setupUi(self.NoticeForm)
-        self.notice_page.switch_window_to_exam.connect(self.alert_message)
+        # TODO: alert message 수정할 것.
+        #self.notice_page.switch_window_to_exam.connect(self.alert_message)
         self.notice_page.switch_window_to_exam.connect(self.show_exam_page)
         self.NoticeForm.show()
 
@@ -69,11 +71,13 @@ class Controller:
 
     def show_exam_page(self):
         self.NoticeForm.close()
+        self.exam_page.start_timer()
         self.exam_page.setupUi(self.ExamForm)
         self.exam_page.switch_window_to_result.connect(self.show_result_page)
         self.ExamForm.show()
 
     def show_result_page(self):
+        self.exam_page.stop_timer()
         self.ExamForm.close()
         self.result_page.setupUi(self.ResultForm)
         self.result_page.switch_window_to_main.connect(self.show_main_page)

@@ -1,13 +1,47 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
+import cv2 # OpenCV
+import qimage2ndarray # for a memory leak,see gist
 from setting import WIDTH, HEIGHT
+from src.module.face_finder import FaceFinder
+
 
 class PreViewPage(QWidget):
     switch_window_to_notice = QtCore.pyqtSignal()
     switch_window_to_main = QtCore.pyqtSignal()
 
+    cap = cv2.VideoCapture(0)
+    label = None
+    timer = QTimer()
+    thread = FaceFinder()
+
+    def displayFrame(self):
+        ret, frame = self.cap.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = qimage2ndarray.array2qimage(frame)
+        self.webcam.setPixmap(QPixmap(image))
+        self.webcam.setScaledContents(True)
+        print(self.thread.find_face(frame))
+
+    def start_timer(self):
+        self.timer.timeout.connect(self.displayFrame)
+        self.timer.start(60)
+
+    def stop_timer(self):
+        self.timer.stop()
+
     def setupUi(self, PreviewForm):
         self.resize(WIDTH, HEIGHT)
+        # self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 40)
+        # self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 30)
+
+        # self.label = QLabel('No Camera Feed')
+        # layout = QVBoxLayout()
+        # layout.addWidget(self.label)
+        # PreviewForm.setLayout(layout)
 
         self.webcam = QtWidgets.QLabel(PreviewForm)
         self.webcam.setGeometry(QtCore.QRect(225, 120, 350, 221))
@@ -40,7 +74,7 @@ class PreViewPage(QWidget):
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
         self.backArrow.setStyleSheet("background-color:rgb(255, 255, 255);")
         self.backArrow.setIcon(QtGui.QIcon("/Users/ewqaz/Desktop/UI/back.png"))
-        self.backArrow.clicked.connect(self.swtich_login_page)
+        self.backArrow.clicked.connect(self.switch_login_page)
 
         self.back.raise_()
         self.text.raise_()
@@ -73,16 +107,5 @@ class PreViewPage(QWidget):
     def switch_notice_page(self):
         self.switch_window_to_notice.emit()
 
-    def swtich_login_page(self):
+    def switch_login_page(self):
         self.switch_window_to_main.emit()
-
-"""
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    PreviewForm = QtWidgets.QWidget()
-    ui = Ui_PreviewForm()
-    ui.setupUi(PreviewForm)
-    PreviewForm.show()
-    sys.exit(app.exec_())
-"""
