@@ -8,6 +8,7 @@ import cv2
 import qimage2ndarray
 from src.module.gaze_detector import GazeDetector
 from src.module.recode_cam import RecodeCam
+from src.module.recode_screen import RecodeScreen
 
 class ExamPage(QWidget):
     switch_window_to_result = QtCore.pyqtSignal()
@@ -17,15 +18,19 @@ class ExamPage(QWidget):
     timer = QTimer()
     gazeDetector = GazeDetector()
     recodeCam = RecodeCam()
+    recodeScreen = RecodeScreen()
 
     def displayFrame(self):
         ret, frame = self.cap.read()
         self.recodeCam.recode_cam(frame)
+        self.recodeScreen.recode_screen()
+
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         image = qimage2ndarray.array2qimage(frame)
         self.webcam.setPixmap(QPixmap(image))
         self.webcam.setScaledContents(True)
         self.gazeDetector.detect_gaze(frame)
+
 
     def start_timer(self):
         self.timer.timeout.connect(self.displayFrame)
