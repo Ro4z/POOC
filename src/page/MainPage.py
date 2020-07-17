@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
+import os
+
 
 class MainPage(QWidget):
     switch_window_to_log = QtCore.pyqtSignal()
@@ -8,6 +10,7 @@ class MainPage(QWidget):
     switch_window_to_login = QtCore.pyqtSignal()
 
     def setupUi(self, MainForm):
+        path = os.path.dirname(os.path.abspath(__file__))
         self.resize(WIDTH, HEIGHT)
 
         self.back_1 = QtWidgets.QLabel(MainForm)
@@ -22,7 +25,7 @@ class MainPage(QWidget):
         self.stImg = QtWidgets.QLabel(MainForm)
         self.stImg.setGeometry(QtCore.QRect(40, 120, 220, 190))
         self.stImg.setStyleSheet("border-radius : 30%;")
-        self.stImg.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/student.png"))
+        self.stImg.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/student.jpg')))
         self.stImg.setScaledContents(True)
 
 
@@ -128,7 +131,6 @@ class MainPage(QWidget):
         self.label = QtWidgets.QLabel(MainForm)
         self.label.setGeometry(QtCore.QRect(340, 36, 5, 60))
         self.label.setStyleSheet("background-color:rgb(255, 181, 53);")
-
 
         self.label_2 = QtWidgets.QLabel(MainForm)
         self.label_2.setGeometry(QtCore.QRect(340, 370, 5, 60))

@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
+import os
 from PyQt5.QtGui import QIcon, QPixmap
 
 
@@ -8,6 +9,7 @@ class LoginPage(QWidget):
     switch_window_to_main = QtCore.pyqtSignal()
 
     def setupUi(self, LoginForm):
+        path = os.path.dirname(os.path.abspath(__file__))
         self.resize(WIDTH, HEIGHT)
         self.back_1 = QtWidgets.QLabel(LoginForm)
         self.back_1.setGeometry(QtCore.QRect(0, 0, 300, 600))
@@ -16,7 +18,7 @@ class LoginPage(QWidget):
         self.back_2 = QtWidgets.QLabel(LoginForm)
         self.back_2.setGeometry(QtCore.QRect(299, 0, 501, 600))
         self.back_2.setToolTip("")
-        self.back_2.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/login.png"))
+        self.back_2.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/login.jpg')))
         self.back_2.setScaledContents(True)
 
         self.loginBtn = QtWidgets.QPushButton(LoginForm)
@@ -39,8 +41,7 @@ class LoginPage(QWidget):
 
         self.label_3 = QtWidgets.QLabel(LoginForm)
         self.label_3.setGeometry(QtCore.QRect(25, 40, 250, 220))
-
-        self.label_3.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/logo.png"))
+        self.label_3.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/logo.png')))
         self.label_3.setScaledContents(True)
 
 
