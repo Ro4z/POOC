@@ -18,7 +18,7 @@ class LoginPage(QWidget):
         self.back_2 = QtWidgets.QLabel(LoginForm)
         self.back_2.setGeometry(QtCore.QRect(299, 0, 501, 600))
         self.back_2.setToolTip("")
-        self.back_2.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/login.jpg')))
+        self.back_2.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/login.png')))
         self.back_2.setScaledContents(True)
 
         self.loginBtn = QtWidgets.QPushButton(LoginForm)

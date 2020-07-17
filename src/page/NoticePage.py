@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
 
 class NoticePage(QWidget):
-    switch_window_to_exam = QtCore.pyqtSignal()
+    switch_window_to_iden = QtCore.pyqtSignal()
 
     def setupUi(self, NoticeForm):
         self.resize(WIDTH, HEIGHT)
@@ -13,15 +13,6 @@ class NoticePage(QWidget):
         self.back.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/preview.png"))
         self.back.setScaledContents(True)
 
-        self.innerSQ = QtWidgets.QLabel(NoticeForm)
-        self.innerSQ.setGeometry(QtCore.QRect(350, 250, 100, 100))
-        self.innerSQ.setStyleSheet("border-radius : 30%;\n"
-"background-color:rgb(255, 255, 255)")
-
-        self.outerSQ = QtWidgets.QLabel(NoticeForm)
-        self.outerSQ.setGeometry(QtCore.QRect(300, 200, 200, 200))
-        self.outerSQ.setStyleSheet("border-radius : 70%;\n"
-"background-color:rgb(38, 55, 71);")
 
         self.startBtn = QtWidgets.QPushButton(NoticeForm)
         self.startBtn.setGeometry(QtCore.QRect(630, 540, 150, 41))
@@ -33,16 +24,16 @@ class NoticePage(QWidget):
 "\n"
 "\n")
 
-        self.startBtn.clicked.connect(self.switch_exam_page)
+        self.startBtn.clicked.connect(self.switch_iden_page)
 
         self.text = QtWidgets.QLabel(NoticeForm)
-        self.text.setGeometry(QtCore.QRect(155, 100, 490, 81))
-        self.text.setStyleSheet("font: 13pt \"HY견고딕\";\n"
-"")
+        self.text.setGeometry(QtCore.QRect(60, 115, 680, 370))
+        self.text.setStyleSheet("font: 12pt \"HY견고딕\";\n"
+                                "background-color:rgb(255, 255, 255);\n"
+                                "line-height:10;\n"
+                                "border-radius:10px;")
 
         self.back.raise_()
-        self.outerSQ.raise_()
-        self.innerSQ.raise_()
         self.startBtn.raise_()
         self.text.raise_()
 
@@ -64,8 +55,19 @@ class NoticePage(QWidget):
 "</style></head><body style=\" font-family:\'HY견고딕\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1 2 1 9 1 2 3 4</p></body></html>"))
         self.startBtn.setText(_translate("NoticeForm", "시험 시작"))
-        self.text.setText(_translate("NoticeForm", "주의사항을 듣고 \'시험 시작\'버튼을 클릭하십시오."))
+        self.text.setText(_translate("NoticeForm", "  지금부터 사용자의 모습과 노트북 화면이 녹화됩니다. \n"
+                                                   "\n"
+                                                   "  부정행위가 5회 이상 감지될 경우, 감독관의 요청에 따라야 합니다. \n"
+                                                   "\n"
+                                                   "\n"
+                                                   "\n"
+                                                   "  부정 행위 판단 기준은 다음과 같습니다.\n"
+                                                   "\n"
+                                                   "  첫째, alt, window, control key등의 특수키를 눌렀을 경우\n"
+                                                   "\n"
+                                                   "  둘째, 눈이 노트북화면을 향하지 않고 왼쪽, 오른쪽을 향하는 경우\n"
+                                                   "\n"
+                                                   "  셋째, 사용자를 제외한 다른 사람이 인식될 경우"))
 
-
-    def switch_exam_page(self):
-        self.switch_window_to_exam.emit()
+    def switch_iden_page(self):
+        self.switch_window_to_iden.emit()

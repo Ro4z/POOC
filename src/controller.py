@@ -3,10 +3,10 @@ from src.page.MainPage import MainPage
 from src.page.LogPage import LogPage
 from src.page.PreViewPage import PreViewPage
 from src.page.NoticePage import NoticePage
+from src.page.IdentifyPage import IdenPage
 from src.page.ExamPage import ExamPage
 from src.page.ResultPage import ResultPage
 from PyQt5 import QtWidgets
-import playsound
 
 class Controller:
     def __init__(self):
@@ -15,6 +15,7 @@ class Controller:
         self.log_page = LogPage()
         self.preview_page = PreViewPage()
         self.notice_page = NoticePage()
+        self.iden_page = IdenPage()
         self.exam_page = ExamPage()
         self.result_page = ResultPage()
 
@@ -23,6 +24,7 @@ class Controller:
         self.LogForm = QtWidgets.QWidget()
         self.PreviewForm = QtWidgets.QWidget()
         self.NoticeForm = QtWidgets.QWidget()
+        self.IdenForm = QtWidgets.QWidget()
         self.ExamForm = QtWidgets.QWidget()
         self.ResultForm = QtWidgets.QWidget()
 
@@ -61,17 +63,18 @@ class Controller:
         self.preview_page.stop_timer()
         self.PreviewForm.close()
         self.notice_page.setupUi(self.NoticeForm)
-        # TODO: alert message 수정할 것.
-        #self.notice_page.switch_window_to_exam.connect(self.alert_message)
-        self.notice_page.switch_window_to_exam.connect(self.show_exam_page)
+        self.notice_page.switch_window_to_iden.connect(self.show_iden_page)
         self.NoticeForm.show()
 
-    def alert_message(self):
-        playsound.playsound("notice.mp3", True)
+    def show_iden_page(self):
+        self.NoticeForm.close()
+        self.iden_page.setupUi(self.IdenForm)
+        self.iden_page.switch_window_to_exam.connect(self.show_exam_page)
+        self.IdenForm.show()
 
     def show_exam_page(self):
-        self.NoticeForm.close()
         self.exam_page.start_timer()
+        self.IdenForm.close()
         self.exam_page.setupUi(self.ExamForm)
         self.exam_page.switch_window_to_result.connect(self.show_result_page)
         self.ExamForm.show()
