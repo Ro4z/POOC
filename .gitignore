@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+src/.DS_Store
+.DS_Store
+*.avi
 # C extensions
 *.so
 
