@@ -1,5 +1,4 @@
-from PySide2.QtCore import *
-from PySide2.QtGui import *
+from PySide2.QtCore import QTimer
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
@@ -16,7 +15,6 @@ class PreViewPage(QWidget):
     cap = cv2.VideoCapture(0)
     label = None
     timer = QTimer()
-    thread = FaceFinder()
 
     def displayFrame(self):
         ret, frame = self.cap.read()
@@ -24,7 +22,6 @@ class PreViewPage(QWidget):
         image = qimage2ndarray.array2qimage(frame)
         self.webcam.setPixmap(QPixmap(image))
         self.webcam.setScaledContents(True)
-        print(self.thread.find_face(frame))
 
     def start_timer(self):
         self.timer.timeout.connect(self.displayFrame)
@@ -72,8 +69,11 @@ class PreViewPage(QWidget):
 
         self.backArrow = QtWidgets.QPushButton(PreviewForm)
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
-        self.backArrow.setStyleSheet("background-color:rgb(255, 255, 255);")
-        self.backArrow.setIcon(QtGui.QIcon("/Users/ewqaz/Desktop/UI/back.png"))
+
+        self.backArrow.setStyleSheet("background-color : rgb(0, 123, 255);\n"
+                                     "border-style:outset;\n"
+                                     "border-radius: 10px;")
+        self.backArrow.setIcon(QtGui.QIcon("/Users/ewqaz/Desktop/UI/back-arrow.png"))
         self.backArrow.clicked.connect(self.switch_login_page)
 
         self.back.raise_()

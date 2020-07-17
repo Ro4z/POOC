@@ -69,10 +69,12 @@ class Controller:
     def show_iden_page(self):
         self.NoticeForm.close()
         self.iden_page.setupUi(self.IdenForm)
+        self.iden_page.start_timer()
         self.iden_page.switch_window_to_exam.connect(self.show_exam_page)
         self.IdenForm.show()
 
     def show_exam_page(self):
+        self.iden_page.stop_timer()
         self.exam_page.start_timer()
         self.IdenForm.close()
         self.exam_page.setupUi(self.ExamForm)

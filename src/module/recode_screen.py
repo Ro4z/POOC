@@ -10,7 +10,7 @@ class RecodeScreen:
     today = date.today()
     file_name = today.strftime("%Y-%m-%d_screen")
     file_name += '.avi'
-    out = cv2.VideoWriter("recode/" + file_name, fourcc, 25.0, (SCREEN_SIZE))
+    out = cv2.VideoWriter("screen.avi", fourcc, 15.0, (SCREEN_SIZE))
 
     def recode_screen(self):
         img = ImageGrab.grab()
@@ -19,6 +19,7 @@ class RecodeScreen:
         self.out.write(frame)
 
     def __del__(self):
+
+
         self.out.release()
         cv2.destroyAllWindows()
-

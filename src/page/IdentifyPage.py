@@ -1,11 +1,45 @@
+from PySide2.QtCore import QTimer
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtGui import QPixmap
 from setting import WIDTH, HEIGHT
+from src.module.face_finder import FaceFinder
+import cv2
+import qimage2ndarray
 
-check = False
+
+
 
 class IdenPage(QWidget):
     switch_window_to_exam = QtCore.pyqtSignal()
+    correct_num = 0
+    user_name = "Inseong"
+    cap = cv2.VideoCapture(0)
+    label = None
+    timer = QTimer()
+    thread = FaceFinder()
+    check = False
+
+    def displayFrame(self):
+        ret, frame = self.cap.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = qimage2ndarray.array2qimage(frame)
+        self.webcam.setPixmap(QPixmap(image))
+        self.webcam.setScaledContents(True)
+        find_name = self.thread.find_face(frame)
+        print(find_name)
+        if find_name == self.user_name:
+            self.correct_num += 1
+
+        if self.correct_num == 7:
+            self.startBtn.raise_()
+
+    def start_timer(self):
+        self.timer.timeout.connect(self.displayFrame)
+        self.timer.start(60)
+
+    def stop_timer(self):
+        self.timer.stop()
 
     def setupUi(self, IdenForm):
         self.resize(WIDTH, HEIGHT)
@@ -35,10 +69,8 @@ class IdenPage(QWidget):
 
         self.webcam.raise_()
         self.text.raise_()
-        self.startBtn.raise_()
 
-        if check:
-            self.startBtn.raise_()
+
 
         self.retranslateUi(IdenForm)
         QtCore.QMetaObject.connectSlotsByName(IdenForm)

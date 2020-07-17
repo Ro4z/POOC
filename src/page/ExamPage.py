@@ -17,12 +17,10 @@ class ExamPage(QWidget):
     label = None
     timer = QTimer()
     gazeDetector = GazeDetector()
-    recodeCam = RecodeCam()
     recodeScreen = RecodeScreen()
 
     def displayFrame(self):
         ret, frame = self.cap.read()
-        self.recodeCam.recode_cam(frame)
         self.recodeScreen.recode_screen()
 
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
