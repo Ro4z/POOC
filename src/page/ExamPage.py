@@ -4,12 +4,17 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QWidget,QMessageBox
 from PyQt5.QtGui import QPixmap
 from setting import CAM_WIDTH, CAM_HEIGHT
+from datetime import datetime
 import cv2
 import keyboard
 import qimage2ndarray
 from src.module.gaze_detector import GazeDetector
 from src.module.recode_cam import RecodeCam
 from src.module.recode_screen import RecodeScreen
+
+log_list=[]
+ri_cnt=0
+le_cnt=0
 
 class ExamPage(QWidget):
     switch_window_to_result = QtCore.pyqtSignal()
@@ -19,6 +24,8 @@ class ExamPage(QWidget):
     timer = QTimer()
     gazeDetector = GazeDetector()
     recodeScreen = RecodeScreen()
+    ri_cnt = 0
+    le_cnt = 0
 
     def displayFrame(self):
         ret, frame = self.cap.read()
@@ -28,8 +35,40 @@ class ExamPage(QWidget):
         image = qimage2ndarray.array2qimage(frame)
         self.webcam.setPixmap(QPixmap(image))
         self.webcam.setScaledContents(True)
-        self.gazeDetector.detect_gaze(frame)
+        direction = self.gazeDetector.detect_gaze(frame)
         self.alert_msg()
+
+        if direction == 1:
+            global ri_cnt
+            ri_temp = ri_cnt
+            ri_temp+=1
+            ri_cnt = ri_temp
+            self.vision_track()
+
+        elif direction == 2:
+            global le_cnt
+            le_temp = le_cnt
+            le_temp+=1
+            le_cnt = le_temp
+            self.vision_track()
+
+
+    def vision_track(self):
+        global ri_cnt
+        global le_cnt
+        if ri_cnt == 5:
+            log_msg = "out of visual range(right)"
+            time = datetime.now().strftime("%Y-%m-%d(%H:%M:%S)")
+            log_list.append([time, log_msg])
+            ri_cnt = 0
+        elif le_cnt == 5:
+            log_msg = "out of visual range(left)"
+            time = datetime.now().strftime("%Y-%m-%d(%H:%M:%S)")
+            log_list.append([time, log_msg])
+            le_cnt = 0
+
+
+
 
     def alert_msg(self):
         msg = QMessageBox()
@@ -38,7 +77,7 @@ class ExamPage(QWidget):
         msg.setWindowTitle("ALERT")
 
         if keyboard.is_pressed('ctrl'):
-            msg.setInformativeText('Ctrl키를 눌렀습니다.')
+            msg.setInformativeText('Alt키를 눌렀습니다.')
             msg.exec_()
         if keyboard.is_pressed('alt'):
             msg.setInformativeText('Alt키를 눌렀습니다.')

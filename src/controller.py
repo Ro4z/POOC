@@ -6,6 +6,8 @@ from src.page.NoticePage import NoticePage
 from src.page.IdentifyPage import IdenPage
 from src.page.ExamPage import ExamPage
 from src.page.ResultPage import ResultPage
+from src.page.ExamPage import log_list
+
 from PyQt5 import QtWidgets
 
 class Controller:
@@ -39,6 +41,7 @@ class Controller:
         self.LogForm.close()
         self.PreviewForm.close()
         self.ResultForm.close()
+        self.log_page.setupUi(self.LogForm)
         self.main_page.setupUi(self.MainForm)
         self.main_page.switch_window_to_login.connect(self.show_login_page)
         self.main_page.switch_window_to_log.connect(self.show_log_page)
@@ -48,8 +51,8 @@ class Controller:
     def show_log_page(self):
         self.MainForm.close()
         self.log_page.setupUi(self.LogForm)
-        self.log_page.switch_window_to_main.connect(self.show_main_page)
         self.LogForm.show()
+        self.log_page.switch_window_to_main.connect(self.show_main_page)
 
     def show_preview_page(self):
         self.MainForm.close()

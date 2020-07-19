@@ -69,8 +69,7 @@ class IdenPage(QWidget):
 
         self.webcam.raise_()
         self.text.raise_()
-        #self.startBtn.raise_()  # test용
-
+        self.startBtn.raise_()  # test용
 
 
         self.retranslateUi(IdenForm)

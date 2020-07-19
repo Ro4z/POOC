@@ -1,14 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
-from datetime import datetime
+from src.page.ExamPage import log_list
 
-list=[]
-
-date = datetime.now().strftime("%Y-%m-%d(%H:%M:%S)")
-alertMsg = "out of visual range"
-list.append([date,alertMsg])
-list.append([date,alertMsg])
+list = [["2020-07-19(21:26:43)","out of visual range(right)"],["2020-07-19(21:26:50)","out of visual range(left)"],["2020-07-19(21:27:03)","press Alt key"]]
 
 class LogPage(QWidget):
     switch_window = QtCore.pyqtSignal()
@@ -24,8 +19,10 @@ class LogPage(QWidget):
 
         self.logList = QtWidgets.QTextBrowser(LogForm)
         self.logList.setGeometry(QtCore.QRect(300, 0, 500, 600))
+        self.logList.clear()
         self.logList.setStyleSheet("border:0; font: 12pt \"Hancom Gothic\";")
         self.logList.setText("\n\n")
+        #self.set_log_text()
 
         self.backArrow = QtWidgets.QPushButton(LogForm)
         self.backArrow.setGeometry(QtCore.QRect(740, 10, 50, 50))
@@ -59,6 +56,7 @@ class LogPage(QWidget):
 "font: bold 12pt \"Hancom Gothic\";\n"
 "")
 
+        self.class_2.clicked.connect(self.set_log_text2)
         self.class_3 = QtWidgets.QPushButton(LogForm)
         self.class_3.setGeometry(QtCore.QRect(30, 260, 251, 71))
         self.class_3.setStyleSheet("background-color :rgb(38, 55, 71);\n"
@@ -129,7 +127,12 @@ class LogPage(QWidget):
     def swtich_login_page(self):
         self.switch_window_to_main.emit()
 
-
     def set_log_text(self):
         for i in range(0,len(list)):
             self.logList.append("  "+list[i][0] + "    "+list[i][1]+"\n")
+            #self.logList.append("  "+list[i][0] + "    "+list[i][1]+"\n")
+
+            #print("  "+log_list[i][0] + "    "+log_list[i][1]+"\n")
+
+    def set_log_text2(self):
+        self.logList.append("\n\n\n")

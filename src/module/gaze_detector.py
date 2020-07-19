@@ -18,13 +18,15 @@ class GazeDetector(QThread):
             gaze_ratio_left_eye = get_gaze_ratio([36, 37, 38, 39, 40, 41], landmarks, image, gray)
             gaze_ratio_right_eye = get_gaze_ratio([42, 43, 44, 45, 46, 47], landmarks, image, gray)
             gaze_ratio = (gaze_ratio_right_eye + gaze_ratio_left_eye) / 2
-            print(gaze_ratio)
+            #print(gaze_ratio)
             if gaze_ratio <= 0.8:
-                print('right')
+                return 1
             elif gaze_ratio <= 3:
+                return 3
                 print('center')
             else:
-                print('left')
+                return 2
+
 
 
 def get_gaze_ratio(eye_points, facial_landmarks, frame, gray):

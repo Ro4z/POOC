@@ -30,7 +30,7 @@ class NoticePage(QWidget):
 
         self.text = QtWidgets.QLabel(NoticeForm)
         self.text.setGeometry(QtCore.QRect(60, 115, 680, 370))
-        self.text.setStyleSheet("font: 20pt \"HY견고딕\";\n"
+        self.text.setStyleSheet("font: 12pt \"HY견고딕\";\n"
                                 "background-color:rgb(255, 255, 255);\n"
                                 "line-height:10;\n"
                                 "border-radius:10px;")
