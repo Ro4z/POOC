@@ -1,16 +1,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
+import os
 
 class ResultPage(QWidget):
     switch_window_to_main = QtCore.pyqtSignal()
 
     def setupUi(self, ResultForm):
+        path = os.path.dirname(os.path.abspath(__file__))
         self.resize(WIDTH, HEIGHT)
 
         self.back_2 = QtWidgets.QLabel(ResultForm)
         self.back_2.setGeometry(QtCore.QRect(0, 0, 800, 600))
-        self.back_2.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/preview.png"))
+        self.back_2.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/preview.jpg')))
         self.back_2.setScaledContents(True)
 
         self.text = QtWidgets.QTextBrowser(ResultForm)

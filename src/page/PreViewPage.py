@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout
 import cv2 # OpenCV
 import qimage2ndarray # for a memory leak,see gist
 from setting import WIDTH, HEIGHT
+import os
 from src.module.face_finder import FaceFinder
 
 
@@ -31,6 +32,7 @@ class PreViewPage(QWidget):
         self.timer.stop()
 
     def setupUi(self, PreviewForm):
+        path = os.path.dirname(os.path.abspath(__file__))
         self.resize(WIDTH, HEIGHT)
         # self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 40)
         # self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 30)
@@ -58,7 +60,7 @@ class PreViewPage(QWidget):
 
         self.back = QtWidgets.QLabel(PreviewForm)
         self.back.setGeometry(QtCore.QRect(0, 0, 800, 600))
-        self.back.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/preview.png"))
+        self.back.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/preview.jpg')))
         self.back.setScaledContents(True)
 
         self.text = QtWidgets.QTextBrowser(PreviewForm)
@@ -73,7 +75,7 @@ class PreViewPage(QWidget):
         self.backArrow.setStyleSheet("background-color : rgb(0, 123, 255);\n"
                                      "border-style:outset;\n"
                                      "border-radius: 10px;")
-        self.backArrow.setIcon(QtGui.QIcon("/Users/ewqaz/Desktop/UI/back-arrow.png"))
+        self.backArrow.setIcon(QtGui.QIcon(os.path.join(path, 'Img/back_arrow.png')))
         self.backArrow.clicked.connect(self.switch_login_page)
 
         self.back.raise_()

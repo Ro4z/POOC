@@ -1,16 +1,18 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 from setting import WIDTH, HEIGHT
+import os
 
 class NoticePage(QWidget):
     switch_window_to_iden = QtCore.pyqtSignal()
 
     def setupUi(self, NoticeForm):
+        path = os.path.dirname(os.path.abspath(__file__))
         self.resize(WIDTH, HEIGHT)
 
         self.back = QtWidgets.QLabel(NoticeForm)
         self.back.setGeometry(QtCore.QRect(0, 0, 800, 600))
-        self.back.setPixmap(QtGui.QPixmap("/Users/ewqaz/Desktop/UI/preview.png"))
+        self.back.setPixmap(QtGui.QPixmap(os.path.join(path, 'Img/preview.jpg')))
         self.back.setScaledContents(True)
 
 
@@ -28,7 +30,7 @@ class NoticePage(QWidget):
 
         self.text = QtWidgets.QLabel(NoticeForm)
         self.text.setGeometry(QtCore.QRect(60, 115, 680, 370))
-        self.text.setStyleSheet("font: 12pt \"HY견고딕\";\n"
+        self.text.setStyleSheet("font: 20pt \"HY견고딕\";\n"
                                 "background-color:rgb(255, 255, 255);\n"
                                 "line-height:10;\n"
                                 "border-radius:10px;")
@@ -63,11 +65,11 @@ class NoticePage(QWidget):
                                                    "\n"
                                                    "  부정 행위 판단 기준은 다음과 같습니다.\n"
                                                    "\n"
-                                                   "  첫째, alt, window, control key등의 특수키를 눌렀을 경우\n"
+                                                   "  첫째. alt, window, control key등의 특수키를 눌렀을 경우\n"
                                                    "\n"
-                                                   "  둘째, 눈이 노트북화면을 향하지 않고 왼쪽, 오른쪽을 향하는 경우\n"
+                                                   "  둘째. 눈이 노트북화면을 향하지 않고 왼쪽, 오른쪽을 향하는 경우\n"
                                                    "\n"
-                                                   "  셋째, 사용자를 제외한 다른 사람이 인식될 경우"))
+                                                   "  셋째. 사용자를 제외한 다른 사람이 인식될 경우"))
 
     def switch_iden_page(self):
         self.switch_window_to_iden.emit()
