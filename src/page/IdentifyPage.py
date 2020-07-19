@@ -69,6 +69,7 @@ class IdenPage(QWidget):
 
         self.webcam.raise_()
         self.text.raise_()
+        #self.startBtn.raise_()  # test용
 
 
 
@@ -77,7 +78,7 @@ class IdenPage(QWidget):
 
     def retranslateUi(self, IdenForm):
         _translate = QtCore.QCoreApplication.translate
-        IdenForm.setWindowTitle(_translate("IdenForm", "Form"))
+        IdenForm.setWindowTitle(_translate("IdenForm", "Identify Page"))
         self.text.setText(_translate("IdenForm", "                                        사용자 본인 확인을 위해 정면을 응시하여 주십시오."))
         self.startBtn.setWhatsThis(_translate("IdenForm", "\n"
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

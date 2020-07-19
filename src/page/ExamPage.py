@@ -1,10 +1,11 @@
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget,QMessageBox
 from PyQt5.QtGui import QPixmap
 from setting import CAM_WIDTH, CAM_HEIGHT
 import cv2
+import keyboard
 import qimage2ndarray
 from src.module.gaze_detector import GazeDetector
 from src.module.recode_cam import RecodeCam
@@ -28,7 +29,23 @@ class ExamPage(QWidget):
         self.webcam.setPixmap(QPixmap(image))
         self.webcam.setScaledContents(True)
         self.gazeDetector.detect_gaze(frame)
+        self.alert_msg()
 
+    def alert_msg(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+        msg.setText("부정행위 감지")
+        msg.setWindowTitle("ALERT")
+
+        if keyboard.is_pressed('ctrl'):
+            msg.setInformativeText('Ctrl키를 눌렀습니다.')
+            msg.exec_()
+        if keyboard.is_pressed('alt'):
+            msg.setInformativeText('Alt키를 눌렀습니다.')
+            msg.exec_()
+        if keyboard.is_pressed('win'):
+            msg.setInformativeText('Window키를 눌렀습니다.')
+            msg.exec_()
 
     def start_timer(self):
         self.timer.timeout.connect(self.displayFrame)
@@ -41,7 +58,6 @@ class ExamPage(QWidget):
         self.resize(CAM_WIDTH, CAM_HEIGHT)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 40)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 30)
-
 
         self.endBtn = QtWidgets.QPushButton(ExamForm)
         self.endBtn.setGeometry(QtCore.QRect(270, 250, 121, 41))
@@ -72,7 +88,6 @@ class ExamPage(QWidget):
     def switch_result_page(self):
         self.switch_window_to_result.emit()
 
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
@@ -81,4 +96,3 @@ if __name__ == "__main__":
     ui.setupUi(ExamForm)
     ExamForm.show()
     sys.exit(app.exec_())
-
